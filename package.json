@@ -1,0 +1,24 @@
+{
+  "name": "gulp-sane-watch",
+  "version": "0.1.0",
+  "description": "Gulp watch with sane",
+  "main": "index.js",
+  "keywords": [
+    "gulp",
+    "watch",
+    "gulpplugin",
+    "sane"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ggkovacs/gulp-sane-watch"
+  },
+  "author": "Gergely Kovács",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ggkovacs/gulp-sane-watch/issues"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "engine": "node >= 0.10"
+}
