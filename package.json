@@ -18,7 +18,14 @@
   "bugs": {
     "url": "https://github.com/ggkovacs/gulp-sane-watch/issues"
   },
-  "devDependencies": {},
-  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-util": "^3.0.1"
+  },
+  "dependencies": {
+    "glob": "^4.0.6",
+    "glob2base": "0.0.11",
+    "sane": "^0.8.0"
+  },
   "engine": "node >= 0.10"
 }
