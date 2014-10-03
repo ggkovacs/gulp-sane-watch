@@ -6,6 +6,8 @@
 var util = require('gulp-util');
 var PluginError = util.PluginError;
 var sane = require('sane');
+var glob2base = require('glob2base');
+var glob = require('glob');
 
 /**
  * PLUGIN_NAME
@@ -14,52 +16,73 @@ var sane = require('sane');
 var PLUGIN_NAME = 'gulp-sane-watch';
 
 /**
+ * Noop
+ */
+function noop() {}
+
+/**
+ * Parse glob
+ * @param  {String} str
+ * @return {Object}
+ */
+function parseGlob(str) {
+    var rs = {};
+    rs.dir = glob2base(new glob.Glob(str));
+    rs.glob = str.replace(rs.dir, '');
+    return rs;
+}
+
+/**
  * Gulp Sane Watch
  * @param  {String|Array}   globs
  * @param  {Object}   options
  * @param  {Function} callback
  */
-function gulpSaneWatch(globs, options, callback) {
+function gulpSaneWatch(globs, opts, cb) {
     if (typeof globs === 'undefined') {
         throw new PluginError(PLUGIN_NAME, 'glob argument required');
     }
 
     if (typeof globs === 'string') {
-        globs = [globs];
+        globs = [{base: globs}];
     }
 
     if (!Array.isArray(globs)) {
         throw new PluginError(PLUGIN_NAME, 'glob should be String or Array, not ' + (typeof globs));
     }
 
-    if (typeof options === 'function') {
-        callback = options;
-        options = {};
+    if (typeof opts === 'function') {
+        cb = opts;
+        opts = {};
     }
 
-    if (typeof options === 'undefined') {
-        options = {};
+    if (typeof cb === 'undefined') {
+        cb = noop;
     }
 
-    if (typeof callback === 'undefined') {
-        callback = function() {};
-    }
+    globs.forEach(function(item) {
+        item = parseGlob(item);
+        var watcher = sane(item.dir, item.glob, opts || {});
 
-    globs.forEach(function(glob) {
-        var watcher = sane(glob[0], glob[1], options);
-        watcher.on('change', function(filepath, root, stat) {
-            util.log(util.colors.cyan('1 file changed'), '(' + util.colors.magenta(filepath) + ')');
-            callback(filepath, root, stat);
+        watcher.on('change', function(filepath, root) {
+            log('1 file changed', filepath);
+            cb(filepath, root);
         });
-        watcher.on('add', function(filepath, root, stat) {
-            util.log(util.colors.cyan('1 file added'), '(' + util.colors.magenta(filepath) + ')');
-            callback(filepath, root, stat);
+
+        watcher.on('add', function(filepath, root) {
+            log('1 file added', filepath);
+            cb(filepath, root);
         });
-        watcher.on('delete', function(filepath, root, stat) {
-            util.log(util.colors.cyan('1 file deleted'), '(' + util.colors.magenta(filepath) + ')');
-            callback(filepath, root, stat);
+
+        watcher.on('delete', function(filepath, root) {
+            log('1 file deleted', filepath);
+            cb(filepath, root);
         });
     });
+
+    function log(msg, param) {
+        console.log('[' + util.colors.green(PLUGIN_NAME) + '] ' + util.colors.cyan(msg) + ' (' + util.colors.magenta(param) + ')');
+    }
 }
 
 module.exports = gulpSaneWatch;
