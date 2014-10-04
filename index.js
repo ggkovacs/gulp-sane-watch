@@ -34,9 +34,9 @@ function parseGlob(str) {
 
 /**
  * Gulp Sane Watch
- * @param  {String|Array}   globs
- * @param  {Object}   options
- * @param  {Function} callback
+ * @param {String|Array}   globs
+ * @param {Object}   opts
+ * @param {Function} cb
  */
 function gulpSaneWatch(globs, opts, cb) {
     if (typeof globs === 'undefined') {
@@ -44,7 +44,7 @@ function gulpSaneWatch(globs, opts, cb) {
     }
 
     if (typeof globs === 'string') {
-        globs = [{base: globs}];
+        globs = [globs];
     }
 
     if (!Array.isArray(globs)) {
@@ -80,6 +80,11 @@ function gulpSaneWatch(globs, opts, cb) {
         });
     });
 
+    /**
+     * Log
+     * @param {String} msg
+     * @param {String} param
+     */
     function log(msg, param) {
         console.log('[' + util.colors.green(PLUGIN_NAME) + '] ' + util.colors.cyan(msg) + ' (' + util.colors.magenta(param) + ')');
     }
