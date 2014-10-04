@@ -1,7 +1,7 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch
 Version: **0.0.1**
 
-## Installation (soon)
+## Installation
 
 Run `npm install gulp-sane-watch`
 
