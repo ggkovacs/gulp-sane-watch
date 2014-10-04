@@ -1,28 +1,31 @@
 {
   "name": "gulp-sane-watch",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Gulp watch with sane",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ggkovacs/gulp-sane-watch.git"
+  },
   "keywords": [
     "gulp",
     "watch",
     "gulpplugin",
     "sane"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ggkovacs/gulp-sane-watch"
-  },
   "author": "Gergely Kovács",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ggkovacs/gulp-sane-watch/issues"
   },
-  "devDependencies": {},
+  "homepage": "https://github.com/ggkovacs/gulp-sane-watch",
   "dependencies": {
-    "gulp-util": "^3.0.1",
     "glob": "^4.0.6",
     "glob2base": "0.0.11",
+    "gulp-util": "^3.0.1",
     "sane": "^0.8.0"
   },
   "engine": "node >= 0.10"

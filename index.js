@@ -66,17 +66,17 @@ function gulpSaneWatch(globs, opts, cb) {
 
         watcher.on('change', function(filepath, root) {
             log('1 file changed', filepath);
-            cb(filepath, root);
+            cb(filepath, root, 'change');
         });
 
         watcher.on('add', function(filepath, root) {
             log('1 file added', filepath);
-            cb(filepath, root);
+            cb(filepath, root, 'add');
         });
 
         watcher.on('delete', function(filepath, root) {
             log('1 file deleted', filepath);
-            cb(filepath, root);
+            cb(filepath, root, 'delete');
         });
     });
 
