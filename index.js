@@ -8,12 +8,24 @@ var PluginError = util.PluginError;
 var sane = require('sane');
 var glob2base = require('glob2base');
 var glob = require('glob');
+var extend = require('extend');
 
 /**
  * PLUGIN_NAME
  * @type {String}
  */
 var PLUGIN_NAME = 'gulp-sane-watch';
+
+/**
+ * Defaults
+ * @type {Object}
+ */
+var defaults = {
+    callbackDelay: 0,
+    onChange: noop,
+    onAdd: noop,
+    onDelete: noop
+};
 
 /**
  * Noop
@@ -34,9 +46,9 @@ function parseGlob(str) {
 
 /**
  * Gulp Sane Watch
- * @param {String|Array}   globs
- * @param {Object}   opts
- * @param {Function} cb
+ * @param {String|Array} globs
+ * @param {Object}       opts
+ * @param {Function}     cb
  */
 function gulpSaneWatch(globs, opts, cb) {
     if (typeof globs === 'undefined') {
@@ -56,28 +68,34 @@ function gulpSaneWatch(globs, opts, cb) {
         opts = {};
     }
 
-    if (typeof cb === 'undefined') {
-        cb = noop;
+    if (typeof cb === 'function') {
+        opts.onChange = cb;
     }
+
+    opts = extend(true, defaults, opts);
+
+    var watcher;
+    var timeout = {
+        onChange: null,
+        onAdd: null,
+        onDelete: null
+    };
 
     globs.forEach(function(item) {
         item = parseGlob(item);
-        var watcher = sane(item.dir, item.glob, opts || {});
-
-        watcher.on('change', function(filepath, root) {
-            log('1 file changed', filepath);
-            cb(filepath, root, 'change');
-        });
-
-        watcher.on('add', function(filepath, root) {
-            log('1 file added', filepath);
-            cb(filepath, root, 'add');
-        });
-
-        watcher.on('delete', function(filepath, root) {
-            log('1 file deleted', filepath);
-            cb(filepath, root, 'delete');
-        });
+        watcher = new sane.Watcher(item.dir, item.glob, opts)
+            .on('change', function(filename, path) {
+                log('1 file changed', filename);
+                callbackWithDelay('change', filename, path);
+            })
+            .on('add', function(filename, path) {
+                log('1 file added', filename);
+                callbackWithDelay('add', filename, path);
+            })
+            .on('delete', function(filename, path) {
+                log('1 file deleted', filename);
+                callbackWithDelay('delete', filename, path);
+            });
     });
 
     /**
@@ -87,6 +105,22 @@ function gulpSaneWatch(globs, opts, cb) {
      */
     function log(msg, param) {
         console.log('[' + util.colors.green(PLUGIN_NAME) + '] ' + util.colors.cyan(msg) + ' (' + util.colors.magenta(param) + ')');
+    }
+
+    /**
+     * Callback with delay
+     * @param {String} eventName
+     */
+    function callbackWithDelay(eventName, filename, path) {
+        eventName = 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
+        if (opts.callbackDelay > 0) {
+            clearTimeout(timeout[eventName]);
+            timeout[eventName] = setTimeout(function() {
+                opts[eventName](filename, path);
+            }, opts.callbackDelay);
+        } else {
+            opts[eventName](filename, path);
+        }
     }
 }
 
