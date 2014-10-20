@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch
-Version: **0.0.1**
+Version: **0.0.2**
 
 ## Installation
 
@@ -30,13 +30,32 @@ Creates watcher that will spy on files that were matched by `glob` which can be 
 #### Options
 This object is passed to [`sane` options](https://github.com/amasad/sane#api) directly (refer to [`sane` documentation](https://github.com/amasad/sane)).
 
-#### Callback 
-Type: `function(filepath, root, eventName)`
+#### Extended options (not required)
 
-This function is called, when some group of events is happens (change, add, delete) on file-system.
-* `filepath`
-* `root`
-* `eventName`
+##### callbackDelay
+Type: `Integer`
+
+Unit: `milliseconds`
+
+##### onChange
+Type: `function(filename, path)`
+
+This function is called, when some group of events is happens (just change) on file-system.
+
+##### onAdd
+Type: `function(filename, path)`
+
+This function is called, when some group of events is happens (just add) on file-system.
+
+##### onDelete
+Type: `function(filename, path)`
+
+This function is called, when some group of events is happens (just delete) on file-system.
+
+#### Callback 
+Type: `function(filename, path)`
+
+This function is called, when some group of events is happens (just change) on file-system.
 
 # License
 MIT (c) 2014 Gergely Kovács (gg.kovacs@gmail.com)
