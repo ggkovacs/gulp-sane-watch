@@ -72,7 +72,7 @@ function gulpSaneWatch(globs, opts, cb) {
         opts.onChange = cb;
     }
 
-    opts = extend(true, defaults, opts);
+    opts = extend(true, {}, defaults, opts);
 
     var watcher;
     var timeout = {
@@ -83,7 +83,7 @@ function gulpSaneWatch(globs, opts, cb) {
 
     globs.forEach(function(item) {
         item = parseGlob(item);
-        watcher = new sane.Watcher(item.dir, item.glob, opts)
+        watcher = sane(item.dir, item.glob, opts)
             .on('change', function(filename, path) {
                 log('1 file changed', filename);
                 callbackWithDelay('change', filename, path);
