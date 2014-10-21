@@ -40,22 +40,22 @@ Unit: `milliseconds`
 ##### onChange
 Type: `function(filename, path)`
 
-This function is called, when some group of events is happens (just change) on file-system.
+This function is called, when some group of events is change happens on file-system.
 
 ##### onAdd
 Type: `function(filename, path)`
 
-This function is called, when some group of events is happens (just add) on file-system.
+This function is called, when some group of events is add happens on file-system.
 
 ##### onDelete
 Type: `function(filename, path)`
 
-This function is called, when some group of events is happens (just delete) on file-system.
+This function is called, when some group of events is delete happens on file-system.
 
 #### Callback 
 Type: `function(filename, path)`
 
-This function is called, when some group of events is happens (just change) on file-system.
+This function is called, when some group of events is change happens on file-system.
 
 # License
 MIT (c) 2014 Gergely Kovács (gg.kovacs@gmail.com)
