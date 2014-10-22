@@ -4,7 +4,7 @@
   "description": "Gulp watch with sane",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,10 @@
   "engine": "node >= 0.10",
   "devDependencies": {
     "chai": "^1.9.2",
-    "mocha": "^1.21.5",
+    "gulp": "^3.8.8",
+    "gulp-jscs": "^1.2.1",
+    "gulp-jshint": "^1.8.5",
+    "gulp-mocha": "^1.1.1",
     "temp": "^0.8.1"
   }
 }

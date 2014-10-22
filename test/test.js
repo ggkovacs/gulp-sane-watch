@@ -1,9 +1,11 @@
+/* global describe, it, beforeEach, afterEach */
 'use strict';
-var should = require('chai').should(),
-    fs = require("fs"),
-    path = require("path"),
-    temp = require("temp").track(),
-    watch = require('../index.js');
+
+var should = require('chai').should(); // jshint ignore:line
+var fs = require('fs');
+var path = require('path');
+var temp = require('temp').track();
+var watch = require('../index.js');
 
 describe('watch', function() {
     var tempDir;
@@ -35,13 +37,15 @@ describe('watch', function() {
     function allReady(watchers, cb) {
         var total = watchers.length;
 
+        var makeReadyHandler = function() {
+            total--;
+            if (total === 0) {
+                cb();
+            }
+        };
+
         for (var i = 0, l = total; i < l; i++) {
-            watchers[i].on('ready', function() {
-                total--;
-                if (total === 0) {
-                    cb();
-                }
-            });
+            watchers[i].on('ready', makeReadyHandler);
         }
     }
 
@@ -122,7 +126,6 @@ describe('watch', function() {
         done = once(done);
 
         var tempSubDir = path.join(tempDir, 'subdir');
-        var tempFile = path.join(tempSubDir, 'test.txt');
         var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
         var tempFile2 = path.join(tempDir2, 'test.txt');
         fs.writeFileSync(tempFile2, 'created');
@@ -161,7 +164,7 @@ describe('watch', function() {
         var calledCount = 0;
         var helper = function() {
             calledCount++;
-        }
+        };
 
         var tempFile = path.join(tempDir, 'test.txt');
         var glob = path.join(tempDir, '*.txt');
@@ -190,7 +193,7 @@ describe('watch', function() {
         };
         var helper = function(event) {
             calledCount[event]++;
-        }
+        };
 
         var tempFile = path.join(tempDir, 'test.txt');
         var glob = path.join(tempDir, '*.txt');
@@ -218,7 +221,6 @@ describe('watch', function() {
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
             fs.writeFileSync(tempFile, 'changed');
-
 
             setTimeout(function() {
                 calledCount.changed.should.equal(1);
@@ -356,6 +358,7 @@ describe('watch', function() {
                 }
 
                 setTimeout(function() {
+                    var file;
                     for (file in files1) {
                         files1[file].should.equal(true);
                     }

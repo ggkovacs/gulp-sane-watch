@@ -3,4 +3,5 @@ node_modules
 .editorconfig
 .jscsrc
 .jshintrc
-node_modules
+gulpfile.js
+.travis.yml
