@@ -33,5 +33,5 @@ gulp.task('jscs', function() {
  */
 gulp.task('test', ['jshint', 'jscs'], function() {
     return gulp.src('test/test.js', {read: false})
-        .pipe(mocha({reporter: 'nyan'}));
+        .pipe(mocha());
 });

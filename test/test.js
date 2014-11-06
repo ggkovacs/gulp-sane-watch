@@ -260,7 +260,7 @@ describe('watch', function() {
                 changed[tempFile1].should.equal(true);
                 changed[tempFile2].should.equal(true);
                 done();
-            }, 200);
+            }, 1000);
         });
     });
 
@@ -275,6 +275,9 @@ describe('watch', function() {
 
         watchers = watch(glob, {verbose: false}, function(filename, dir) {
             var full = path.join(dir, filename);
+            if (full === tempDir2) {
+                return;
+            }
             full.should.equal(tempFile);
             done();
         });
@@ -304,7 +307,7 @@ describe('watch', function() {
             fs.mkdirSync(tempDir2);
             setTimeout(function() {
                 fs.writeFileSync(tempFile, 'created');
-            }, 100);
+            }, 400);
         });
     });
 
@@ -335,11 +338,17 @@ describe('watch', function() {
 
         var watchers1 = watch(globs1, {verbose: false}, function(filename, dir) {
             var full = path.join(dir, filename);
+            if (typeof files1[full] === 'undefined') {
+                return;
+            }
             files1[full] = true;
         });
 
         var watchers2 = watch(globs2, {verbose: false}, function(filename, dir) {
             var full = path.join(dir, filename);
+            if (typeof files2[full] === 'undefined') {
+                return;
+            }
             files2[full] = true;
         });
 
@@ -368,7 +377,7 @@ describe('watch', function() {
                     done();
                 }, 1000);
 
-            }, 100);
+            }, 400);
         });
     });
 });
