@@ -1,6 +1,6 @@
 {
   "name": "gulp-sane-watch",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Gulp watch with sane",
   "main": "index.js",
   "scripts": {
