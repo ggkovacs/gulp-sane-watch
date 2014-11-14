@@ -26,9 +26,9 @@
     "debounce": "^1.0.0",
     "extend": "^2.0.0",
     "glob": "^4.0.6",
-    "glob2base": "0.0.11",
+    "glob2base": "0.0.12",
     "gulp-util": "^3.0.1",
-    "sane": "^0.8.0"
+    "sane": "^1.0.0-rc1"
   },
   "engine": "node >= 0.10",
   "devDependencies": {
