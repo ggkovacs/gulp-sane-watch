@@ -84,4 +84,4 @@ Type: `function(filename, path, stat)`
 This function is called, when some group of events is happens on file-system.
 
 # License
-MIT (c) 2014 Gergely Kovács (gg.kovacs@gmail.com)
+MIT (c) 2015 Gergely Kovács (gg.kovacs@gmail.com)
