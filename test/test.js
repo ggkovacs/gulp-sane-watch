@@ -380,4 +380,24 @@ describe('watch', function() {
             }, 400);
         });
     });
+
+    it('should properly find files by extension', function(done) {
+        done = once(done);
+
+        var tempFile = path.join(tempDir, 'test.txt~.part');
+        var glob = path.join(tempDir, '*.txt');
+
+        var calledCount = 0;
+        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+            calledCount++;
+        });
+        this.timeout(0);
+        allReady(watchers, function() {
+            fs.writeFileSync(tempFile, 'created');
+            setTimeout(function() {
+                calledCount.should.equal(0);
+                done();
+            }, 1000);
+        });
+    });
 });
