@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch [![Build Status](https://travis-ci.org/ggkovacs/gulp-sane-watch.svg)](https://travis-ci.org/ggkovacs/gulp-sane-watch)
-Version: **0.0.8**
+Version: **0.0.9**
 
 ## Installation
 
