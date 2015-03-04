@@ -26,7 +26,8 @@ var defaults = {
     onChange: noop,
     onAdd: noop,
     onDelete: noop,
-    verbose: true
+    verbose: true,
+    saneOptions: {}
 };
 
 /**
@@ -100,8 +101,9 @@ function gulpSaneWatch(globs, opts, cb) {
 
     globs.forEach(function(item) {
         item = parseGlob(item);
+        var saneOpts = extend(true, {}, opts.saneOptions, {glob: item.glob});
         watchers.push(
-            sane(item.dir, item.glob, opts)
+            sane(item.dir, saneOpts)
                 .on('change', function(filename, path, stat) {
                     if (opts.verbose) {
                         log('1 file changed', filename);
