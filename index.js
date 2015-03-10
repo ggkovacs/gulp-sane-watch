@@ -58,10 +58,10 @@ function log(msg, param) {
 
 /**
  * Gulp Sane Watch
- * @param {String|Array} globs
- * @param {Object}       opts
- * @param {Function}     cb        overrides other callbacks in opts
- * @return {Array}       watchers
+ * @param  {String|Array} globs
+ * @param  {Object}       opts
+ * @param  {Function}     cb        overrides other callbacks in opts
+ * @return {Array}        watchers
  */
 function gulpSaneWatch(globs, opts, cb) {
     if (typeof globs === 'undefined') {
