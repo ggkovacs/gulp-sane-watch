@@ -220,7 +220,10 @@ describe('watch', function() {
         this.timeout(0);
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
-            fs.writeFileSync(tempFile, 'changed');
+
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed');
+            }, 1000);
 
             setTimeout(function() {
                 calledCount.changed.should.equal(1);
@@ -230,7 +233,7 @@ describe('watch', function() {
                     calledCount.deleted.should.equal(1);
                     done();
                 }, 1000);
-            }, 1000);
+            }, 2000);
         });
     });
 
