@@ -37,6 +37,10 @@
     "gulp-jscs": "^1.4.0",
     "gulp-jshint": "^1.8.5",
     "gulp-mocha": "^2.0.0",
+    "pre-commit": "^1.0.6",
     "temp": "^0.8.1"
-  }
+  },
+  "pre-commit": [
+    "test"
+  ]
 }
