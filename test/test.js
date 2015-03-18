@@ -219,11 +219,18 @@ describe('watch', function() {
 
         this.timeout(0);
         allReady(watchers, function() {
+            var timeout = 1000;
+
             fs.writeFileSync(tempFile, 'created');
 
-            setTimeout(function() {
+            if (process.platform === 'darwin') {
+                timeout += 1000;
+                setTimeout(function() {
+                    fs.writeFileSync(tempFile, 'changed');
+                }, 1000);
+            } else {
                 fs.writeFileSync(tempFile, 'changed');
-            }, 1000);
+            }
 
             setTimeout(function() {
                 calledCount.changed.should.equal(1);
@@ -233,7 +240,7 @@ describe('watch', function() {
                     calledCount.deleted.should.equal(1);
                     done();
                 }, 1000);
-            }, 2000);
+            }, timeout);
         });
     });
 
