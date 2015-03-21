@@ -1,5 +1,5 @@
-# [gulp](https://github.com/gulpjs/gulp)-sane-watch [![Build Status](https://travis-ci.org/ggkovacs/gulp-sane-watch.svg)](https://travis-ci.org/ggkovacs/gulp-sane-watch)
-Version: **0.0.9**
+# [gulp](https://github.com/gulpjs/gulp)-sane-watch [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+Version: **0.1.0**
 
 ## Installation
 
@@ -84,4 +84,11 @@ Type: `function(filename, path, stat)`
 This function is called, when some group of events is happens on file-system.
 
 # License
-MIT (c) 2015 Gergely Kovács (gg.kovacs@gmail.com)
+MIT © 2015 Gergely Kovács (gg.kovacs@gmail.com)
+
+[npm-image]: https://badge.fury.io/js/gulp-sane-watch.svg
+[npm-url]: https://npmjs.org/package/gulp-sane-watch
+[travis-image]: https://travis-ci.org/ggkovacs/gulp-sane-watch.svg?branch=master
+[travis-url]: https://travis-ci.org/ggkovacs/gulp-sane-watch
+[daviddm-image]: https://david-dm.org/ggkovacs/gulp-sane-watch.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/ggkovacs/gulp-sane-watch
