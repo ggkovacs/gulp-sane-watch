@@ -29,15 +29,15 @@
     "glob": "^5.0.3",
     "glob2base": "0.0.12",
     "gulp-util": "^3.0.2",
-    "sane": "^1.0.1"
+    "sane": "^1.0.2"
   },
   "engine": "node >= 0.10",
   "devDependencies": {
-    "chai": "^2.1.2",
+    "chai": "^2.2.0",
     "gulp": "^3.8.8",
     "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.8.5",
-    "gulp-mocha": "^2.0.0",
+    "gulp-jshint": "^1.9.4",
+    "gulp-mocha": "^2.0.1",
     "pre-commit": "^1.0.6",
     "temp": "^0.8.1"
   },

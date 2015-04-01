@@ -5,3 +5,4 @@ node_modules
 .jshintrc
 gulpfile.js
 .travis.yml
+test
