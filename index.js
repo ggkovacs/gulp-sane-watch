@@ -27,7 +27,7 @@ var defaults = {
     onAdd: noop,
     onDelete: noop,
     verbose: true,
-    saneOptions: {}
+    saneOptions: {},
 };
 
 /**
@@ -82,10 +82,11 @@ function gulpSaneWatch(globs, opts, cb) {
     }
 
     if (typeof cb === 'function') {
-        // merge add and change events
+        // Merge add and change events
         if (opts.debounce) {
             cb = debounce(cb, opts.debounce);
         }
+
         opts.onChange = opts.onAdd = opts.onDelete = cb;
     } else if (opts.debounce) {
         ['onDelete', 'onChange', 'onAdd'].forEach(function(event) {
@@ -108,18 +109,21 @@ function gulpSaneWatch(globs, opts, cb) {
                     if (opts.verbose) {
                         log('1 file changed', filename);
                     }
+
                     opts.onChange(filename, path, stat);
                 })
                 .on('add', function(filename, path, stat) {
                     if (opts.verbose) {
                         log('1 file added', filename);
                     }
+
                     opts.onAdd(filename, path, stat);
                 })
                 .on('delete', function(filename, path, stat) {
                     if (opts.verbose) {
                         log('1 file deleted', filename);
                     }
+
                     opts.onDelete(filename, path);
                 })
         );

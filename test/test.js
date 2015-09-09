@@ -20,6 +20,7 @@ describe('watch', function() {
         watchers.forEach(function(watcher) {
             watcher.close();
         });
+
         temp.cleanupSync();
         done();
     });
@@ -31,6 +32,7 @@ describe('watch', function() {
                 done();
             }
         };
+
         return f;
     }
 
@@ -59,6 +61,7 @@ describe('watch', function() {
             full.should.equal(tempFile);
             done();
         });
+
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
         });
@@ -75,6 +78,7 @@ describe('watch', function() {
             full.should.equal(tempFile);
             done();
         });
+
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'changed');
         });
@@ -93,34 +97,11 @@ describe('watch', function() {
             full.should.equal(tempFile);
             done();
         });
+
         allReady(watchers, function() {
             fs.renameSync(tempFile2, tempFile);
         });
     });
-
-    /*
-     * does not work
-     */
-    /*
-    it('should detect files in moved directory', function(done) {
-        done = once(done);
-
-        var tempSubDir = path.join(tempDir, 'subdir');
-        var tempFile = path.join(tempSubDir, 'test.txt');
-        var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
-        var tempFile2 = path.join(tempDir2, 'test.txt');
-        fs.writeFileSync(tempFile2, 'created');
-        var glob = path.join(tempDir, '**', '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
-            var full = path.join(dir, filename);
-            full.should.equal(tempFile);
-            done();
-        });
-        allReady(watchers, function() {
-            fs.renameSync(tempDir2, tempSubDir);
-        });
-    });
-    */
 
     it('should detect moved directories', function(done) {
         done = once(done);
@@ -135,6 +116,7 @@ describe('watch', function() {
             full.should.equal(tempSubDir);
             done();
         });
+
         allReady(watchers, function() {
             fs.renameSync(tempDir2, tempSubDir);
         });
@@ -155,6 +137,7 @@ describe('watch', function() {
             full.should.equal(tempSubDir);
             done();
         });
+
         allReady(watchers, function() {
             fs.renameSync(tempSubDir, tempSubDir2);
         });
@@ -189,7 +172,7 @@ describe('watch', function() {
         var calledCount = {
             changed: 0,
             added: 0,
-            deleted: 0
+            deleted: 0,
         };
         var helper = function(event) {
             calledCount[event]++;
@@ -205,11 +188,13 @@ describe('watch', function() {
                 full.should.equal(tempFile);
                 helper('added');
             },
+
             onChange: function(filename, dir) {
                 var full = path.join(dir, filename);
                 full.should.equal(tempFile);
                 helper('changed');
             },
+
             onDelete: function(filename, dir) {
                 var full = path.join(dir, filename);
                 full.should.equal(tempFile);
@@ -288,6 +273,7 @@ describe('watch', function() {
             if (full === tempDir2) {
                 return;
             }
+
             full.should.equal(tempFile);
             done();
         });
@@ -309,6 +295,7 @@ describe('watch', function() {
             if (stat && stat.isDirectory()) {
                 return;
             }
+
             full.should.equal(tempFile);
             done();
         });
@@ -327,11 +314,11 @@ describe('watch', function() {
         var tempDir2 = path.join(tempDir, 'subdir');
         var globs1 = [
             path.join(tempDir, '**', '*.txt'),
-            path.join(tempDir, '**', '*.tst')
+            path.join(tempDir, '**', '*.tst'),
         ];
         var globs2 = [
             path.join(tempDir, '**', '*.css'),
-            path.join(tempDir, '**', '*.js')
+            path.join(tempDir, '**', '*.js'),
         ];
 
         var tempFile1 = path.join(tempDir, 'test.txt');
@@ -351,6 +338,7 @@ describe('watch', function() {
             if (typeof files1[full] === 'undefined') {
                 return;
             }
+
             files1[full] = true;
         });
 
@@ -359,6 +347,7 @@ describe('watch', function() {
             if (typeof files2[full] === 'undefined') {
                 return;
             }
+
             files2[full] = true;
         });
 
@@ -372,6 +361,7 @@ describe('watch', function() {
                 for (file in files1) {
                     fs.writeFileSync(file, 'created');
                 }
+
                 for (file in files2) {
                     fs.writeFileSync(file, 'created');
                 }
@@ -381,9 +371,11 @@ describe('watch', function() {
                     for (file in files1) {
                         files1[file].should.equal(true);
                     }
+
                     for (file in files2) {
                         files2[file].should.equal(true);
                     }
+
                     done();
                 }, 1000);
 
@@ -401,6 +393,7 @@ describe('watch', function() {
         watchers = watch(glob, {verbose: false}, function(filename, dir) {
             calledCount++;
         });
+
         this.timeout(0);
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
