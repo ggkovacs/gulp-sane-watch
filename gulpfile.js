@@ -15,7 +15,7 @@ gulp.task('jshint', function() {
     return gulp.src(['index.js', 'test/test.js'])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'), {
-            verbose: true
+            verbose: true,
         })
         .pipe(jshint.reporter('fail'));
 });
@@ -32,6 +32,8 @@ gulp.task('jscs', function() {
  * Test
  */
 gulp.task('test', ['jshint', 'jscs'], function() {
-    return gulp.src('test/test.js', {read: false})
+    return gulp.src('test/test.js', {
+            read: false,
+        })
         .pipe(mocha());
 });
