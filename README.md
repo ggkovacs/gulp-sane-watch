@@ -53,12 +53,15 @@ gulp.task('watch', function() {
 ### saneWatch(glob, [options, callback])
 
 #### glob
-Type: `String`|`Array`
+Type: `String` | `Array`
 
 Creates watcher that will spy on files that were matched by `glob` which can be a
 [`node-glob`](https://github.com/isaacs/node-glob) string or array of strings.
 
 #### options
+
+##### saneOptions
+
 This object is passed to [`sane` options](https://github.com/amasad/sane#api) directly (refer to [`sane` documentation](https://github.com/amasad/sane)).
 
 ##### debounce
@@ -73,15 +76,12 @@ Type: `Boolean`
 
 Default: `true`
 
-##### onChange, onAdd
+##### onChange, onAdd, onDelete
 Type: `function(filename, path, stat)`
 
 This function is called, when some group of events is happens on file-system.
 
-##### onDelete
-Type: `function(filename, path)`
-
-This function is called, when some group of events is happens on file-system.
+onDelete function parameter list does not include `stat` parameter.
 
 #### callback
 Type: `function(filename, path, stat)`
