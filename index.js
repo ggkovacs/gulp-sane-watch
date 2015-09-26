@@ -60,7 +60,7 @@ function log(msg, param) {
  * Gulp Sane Watch
  * @param  {String|Array} globs
  * @param  {Object}       opts
- * @param  {Function}     cb        overrides other callbacks in opts
+ * @param  {Function}     cb        Overrides other callbacks in opts
  * @return {Array}        watchers
  */
 function gulpSaneWatch(globs, opts, cb) {
@@ -119,7 +119,7 @@ function gulpSaneWatch(globs, opts, cb) {
 
                     opts.onAdd(filename, path, stat);
                 })
-                .on('delete', function(filename, path, stat) {
+                .on('delete', function(filename, path) {
                     if (opts.verbose) {
                         log('1 file deleted', filename);
                     }

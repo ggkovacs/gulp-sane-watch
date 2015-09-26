@@ -390,7 +390,7 @@ describe('watch', function() {
         var glob = path.join(tempDir, '*.txt');
 
         var calledCount = 0;
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, {verbose: false}, function() {
             calledCount++;
         });
 
