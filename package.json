@@ -36,8 +36,9 @@
     "chai": "3.4.1",
     "gulp": "3.9.0",
     "gulp-jscs": "3.0.2",
-    "gulp-jshint": "1.12.0",
+    "gulp-jshint": "2.0.0",
     "gulp-mocha": "2.2.0",
+    "jshint": "^2.8.0",
     "pre-commit": "1.1.2",
     "temp": "0.8.3"
   },
