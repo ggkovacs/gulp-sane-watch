@@ -93,6 +93,8 @@ This function is called, when some group of events is happens on file-system.
 
 onDelete function parameter list does not include `stat` parameter.
 
+onReady function parameter list does not include any parameter.
+
 ##### events
 - Type: `Array`
 - Default: `['onChange', 'onAdd', 'onDelete']`
