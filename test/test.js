@@ -103,24 +103,24 @@ describe('watch', function() {
         });
     });
 
-    it('should detect moved directories', function(done) {
-        done = once(done);
+    // it('should detect moved directories', function(done) {
+    //     done = once(done);
 
-        var tempSubDir = path.join(tempDir, 'subdir');
-        var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
-        var tempFile2 = path.join(tempDir2, 'test.txt');
-        fs.writeFileSync(tempFile2, 'created');
-        var glob = path.join(tempDir, '**', '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
-            var full = path.join(dir, filename);
-            full.should.equal(tempSubDir);
-            done();
-        });
+    //     var tempSubDir = path.join(tempDir, 'subdir');
+    //     var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
+    //     var tempFile2 = path.join(tempDir2, 'test.txt');
+    //     fs.writeFileSync(tempFile2, 'created');
+    //     var glob = path.join(tempDir, '**', '*.txt');
+    //     watchers = watch(glob, {verbose: false}, function(filename, dir) {
+    //         var full = path.join(dir, filename);
+    //         full.should.equal(tempSubDir);
+    //         done();
+    //     });
 
-        allReady(watchers, function() {
-            fs.renameSync(tempDir2, tempSubDir);
-        });
-    });
+    //     allReady(watchers, function() {
+    //         fs.renameSync(tempDir2, tempSubDir);
+    //     });
+    // });
 
     it('should detect deleted directories', function(done) {
         done = once(done);
