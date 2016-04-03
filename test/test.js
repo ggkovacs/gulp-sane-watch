@@ -1,7 +1,7 @@
 /* global describe, it, beforeEach, afterEach */
 'use strict';
 
-var should = require('chai').should(); // jshint ignore:line
+var should = require('chai').should();
 var fs = require('fs');
 var path = require('path');
 var temp = require('temp').track();
@@ -180,6 +180,7 @@ describe('watch', function() {
 
         var tempFile = path.join(tempDir, 'test.txt');
         var glob = path.join(tempDir, '*.txt');
+
         watchers = watch(glob, {
             verbose: false,
             debounce: 300,
@@ -203,6 +204,7 @@ describe('watch', function() {
         });
 
         this.timeout(0);
+
         allReady(watchers, function() {
             var timeout = 1000;
 
