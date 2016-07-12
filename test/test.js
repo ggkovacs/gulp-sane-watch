@@ -209,13 +209,16 @@ describe('watch', function() {
             var timeout = 1000;
 
             fs.writeFileSync(tempFile, 'created');
-            fs.writeFileSync(tempFile, 'changed 1');
-            fs.writeFileSync(tempFile, 'changed 2');
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 1');
+            }, 100);
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 2');
+            }, 200);
 
             setTimeout(function() {
-                calledCount.changed.should.be.within(0, 1);
-                calledCount.added.should.be.within(0, 1);
-                (calledCount.added + calledCount.changed).should.be.at.least(1);
+                calledCount.changed.should.equal(1);
+                calledCount.added.should.equal(1);
                 fs.unlinkSync(tempFile);
                 setTimeout(function() {
                     calledCount.deleted.should.equal(1);
