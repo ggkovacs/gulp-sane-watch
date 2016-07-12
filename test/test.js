@@ -161,6 +161,8 @@ describe('watch', function() {
 
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
+            fs.writeFileSync(tempFile, 'changed 1');
+            fs.writeFileSync(tempFile, 'changed 2');
             setTimeout(function() {
                 calledCount.should.equal(1);
                 done();
@@ -207,19 +209,13 @@ describe('watch', function() {
             var timeout = 1000;
 
             fs.writeFileSync(tempFile, 'created');
-
-            if (process.platform === 'darwin') {
-                timeout += 1000;
-                setTimeout(function() {
-                    fs.writeFileSync(tempFile, 'changed');
-                }, 1000);
-            } else {
-                fs.writeFileSync(tempFile, 'changed');
-            }
+            fs.writeFileSync(tempFile, 'changed 1');
+            fs.writeFileSync(tempFile, 'changed 2');
 
             setTimeout(function() {
-                calledCount.changed.should.equal(1);
-                calledCount.added.should.equal(1);
+                calledCount.changed.should.be.within(0, 1);
+                calledCount.added.should.be.within(0, 1);
+                (calledCount.added + calledCount.changed).should.be.at.least(1);
                 fs.unlinkSync(tempFile);
                 setTimeout(function() {
                     calledCount.deleted.should.equal(1);
