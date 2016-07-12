@@ -161,8 +161,12 @@ describe('watch', function() {
 
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
-            fs.writeFileSync(tempFile, 'changed 1');
-            fs.writeFileSync(tempFile, 'changed 2');
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 1');
+            }, 100);
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 2');
+            }, 200);
             setTimeout(function() {
                 calledCount.should.equal(1);
                 done();
