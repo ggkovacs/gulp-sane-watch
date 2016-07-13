@@ -33,7 +33,7 @@
   "engine": "node >= 0.10",
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^2.11.1",
+    "eslint": "^3.0.1",
     "eslint-config-mito": "^4.1.0",
     "mocha": "^2.5.3",
     "pre-commit": "^1.1.2",
