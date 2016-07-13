@@ -162,6 +162,12 @@ describe('watch', function() {
         allReady(watchers, function() {
             fs.writeFileSync(tempFile, 'created');
             setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 1');
+            }, 100);
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 2');
+            }, 200);
+            setTimeout(function() {
                 calledCount.should.equal(1);
                 done();
             }, 1000);
@@ -207,15 +213,12 @@ describe('watch', function() {
             var timeout = 1000;
 
             fs.writeFileSync(tempFile, 'created');
-
-            if (process.platform === 'darwin') {
-                timeout += 1000;
-                setTimeout(function() {
-                    fs.writeFileSync(tempFile, 'changed');
-                }, 1000);
-            } else {
-                fs.writeFileSync(tempFile, 'changed');
-            }
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 1');
+            }, 100);
+            setTimeout(function() {
+                fs.writeFileSync(tempFile, 'changed 2');
+            }, 200);
 
             setTimeout(function() {
                 calledCount.changed.should.equal(1);
