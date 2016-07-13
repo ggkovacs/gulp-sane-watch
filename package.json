@@ -34,7 +34,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.0.1",
-    "eslint-config-mito": "^4.1.0",
+    "eslint-config-mito": "^5.0.0",
     "mocha": "^2.5.3",
     "pre-commit": "^1.1.2",
     "temp": "^0.8.3"
