@@ -122,26 +122,26 @@ describe('watch', function() {
     //     });
     // });
 
-    // it('should detect deleted directories', function(done) {
-    //     done = once(done);
+    it('should detect deleted directories', function(done) {
+        done = once(done);
 
-    //     var tempSubDir = path.join(tempDir, 'subdir');
-    //     var tempFile = path.join(tempSubDir, 'test.txt');
-    //     var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
-    //     var tempSubDir2 = path.join(tempDir2, 'subdir');
-    //     fs.mkdirSync(tempSubDir);
-    //     fs.writeFileSync(tempFile, 'created');
-    //     var glob = path.join(tempDir, '**', '*.txt');
-    //     watchers = watch(glob, {verbose: false}, function(filename, dir) {
-    //         var full = path.join(dir, filename);
-    //         full.should.equal(path.join(tempSubDir));
-    //         done();
-    //     });
+        var tempSubDir = path.join(tempDir, 'subdir');
+        var tempFile = path.join(tempSubDir, 'test.txt');
+        var tempDir2 = temp.mkdirSync('gulp-sane-watch-2');
+        var tempSubDir2 = path.join(tempDir2, 'subdir');
+        fs.mkdirSync(tempSubDir);
+        fs.writeFileSync(tempFile, 'created');
+        var glob = path.join(tempDir, '**', '*.txt');
+        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+            var full = path.join(dir, filename);
+            full.should.equal(path.join(tempSubDir));
+            done();
+        });
 
-    //     allReady(watchers, function() {
-    //         fs.renameSync(tempSubDir, tempSubDir2);
-    //     });
-    // });
+        allReady(watchers, function() {
+            fs.renameSync(tempSubDir, tempSubDir2);
+        });
+    });
 
     it('should debounce callback', function(done) {
         var calledCount = 0;
