@@ -61,6 +61,22 @@ gulp.task('watch', function() {
     });
 });
 ```
+
+```js
+var gulp = require('gulp');
+var saneWatch = require('gulp-sane-watch');
+
+gulp.task('watch', function() {
+    saneWatch('css/**/*.css', {
+        saneOptions: {
+            poll: true
+        }
+    }, function() {
+        gulp.start('styles');
+    }); 
+});
+```
+
 ## API
 
 ### saneWatch(glob, [options, callback])
