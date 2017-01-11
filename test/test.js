@@ -134,7 +134,7 @@ describe('watch', function() {
         var glob = path.join(tempDir, '**', '*.txt');
         watchers = watch(glob, {verbose: false}, function(filename, dir) {
             var full = path.join(dir, filename);
-            full.should.equal(path.join(tempSubDir));
+            full.should.equal(path.join(tempFile));
             done();
         });
 
