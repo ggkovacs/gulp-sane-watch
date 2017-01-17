@@ -1,4 +1,5 @@
 /* global describe, it, beforeEach, afterEach */
+
 'use strict';
 
 var should = require('chai').should(); // eslint-disable-line no-unused-vars
@@ -56,7 +57,7 @@ describe('watch', function() {
 
         var tempFile = path.join(tempDir, 'test.txt');
         var glob = path.join(tempDir, '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             full.should.equal(tempFile);
             done();
@@ -73,7 +74,7 @@ describe('watch', function() {
         var tempFile = path.join(tempDir, 'test.txt');
         fs.writeFileSync(tempFile, 'created');
         var glob = path.join(tempDir, '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             full.should.equal(tempFile);
             done();
@@ -92,7 +93,7 @@ describe('watch', function() {
         var tempFile2 = path.join(tempDir2, 'test.txt');
         fs.writeFileSync(tempFile2, 'created');
         var glob = path.join(tempDir, '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             full.should.equal(tempFile);
             done();
@@ -132,7 +133,7 @@ describe('watch', function() {
         fs.mkdirSync(tempSubDir);
         fs.writeFileSync(tempFile, 'created');
         var glob = path.join(tempDir, '**', '*.txt');
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             full.should.contain(path.join(tempSubDir));
             done();
@@ -151,7 +152,10 @@ describe('watch', function() {
 
         var tempFile = path.join(tempDir, 'test.txt');
         var glob = path.join(tempDir, '*.txt');
-        watchers = watch(glob, {verbose: false, debounce: 300}, function(filename, dir) {
+        watchers = watch(glob, {
+            verbose: false,
+            debounce: 300
+        }, function(filename, dir) {
             var full = path.join(dir, filename);
             full.should.equal(tempFile);
             helper();
@@ -244,7 +248,7 @@ describe('watch', function() {
 
         fs.writeFileSync(tempFile1, 'created');
 
-        watchers = watch([glob1, glob2], {verbose: false}, function(filename, dir) {
+        watchers = watch([glob1, glob2], { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             changed[full] = true;
         });
@@ -271,7 +275,7 @@ describe('watch', function() {
 
         fs.mkdirSync(tempDir2);
 
-        watchers = watch(glob, {verbose: false}, function(filename, dir) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             if (full === tempDir2) {
                 return;
@@ -293,7 +297,7 @@ describe('watch', function() {
         var tempFile = path.join(tempDir2, 'subtest.txt');
         var glob = path.join(tempDir, '**', '*.txt');
 
-        watchers = watch(glob, {verbose: false}, function(filename, dir, stat) {
+        watchers = watch(glob, { verbose: false }, function(filename, dir, stat) {
             var full = path.join(dir, filename);
             if (stat && stat.isDirectory()) {
                 return;
@@ -336,7 +340,7 @@ describe('watch', function() {
         files2[tempFile3] = false;
         files2[tempFile4] = false;
 
-        var watchers1 = watch(globs1, {verbose: false}, function(filename, dir) {
+        var watchers1 = watch(globs1, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             if (typeof files1[full] === 'undefined') {
                 return;
@@ -345,7 +349,7 @@ describe('watch', function() {
             files1[full] = true;
         });
 
-        var watchers2 = watch(globs2, {verbose: false}, function(filename, dir) {
+        var watchers2 = watch(globs2, { verbose: false }, function(filename, dir) {
             var full = path.join(dir, filename);
             if (typeof files2[full] === 'undefined') {
                 return;
@@ -392,7 +396,7 @@ describe('watch', function() {
         var glob = path.join(tempDir, '*.txt');
 
         var calledCount = 0;
-        watchers = watch(glob, {verbose: false}, function() {
+        watchers = watch(glob, { verbose: false }, function() {
             calledCount++;
         });
 

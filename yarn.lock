@@ -357,9 +357,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-mito@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-mito/-/eslint-config-mito-6.0.0.tgz#b9ac0bae8736228247c3de376f3dcc2e7b5d97f2"
+eslint-config-mito@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-mito/-/eslint-config-mito-7.0.1.tgz#445f277e193dcffb1f02563d346a270486f36afa"
 
 eslint@^3.13.1:
   version "3.13.1"
