@@ -123,7 +123,7 @@ List of events, that should be watched by `gulp-sane-watch`. Contains [event nam
 This function is called, when some group of events is happens on file-system.
 
 # License
-MIT © 2016 Gergely Kovács (gg.kovacs@gmail.com)
+MIT © 2017 Gergely Kovács (gg.kovacs@gmail.com)
 
 [npm-image]: https://badge.fury.io/js/gulp-sane-watch.svg
 [npm-url]: https://npmjs.org/package/gulp-sane-watch
