@@ -28,7 +28,7 @@
     "find-index": "^1.1.0",
     "glob": "^7.1.1",
     "gulp-util": "^3.0.8",
-    "sane": "^1.5.0"
+    "sane": "^2.0.0"
   },
   "engine": "node >= 4",
   "devDependencies": {
