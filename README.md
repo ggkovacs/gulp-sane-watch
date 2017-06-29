@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-Version: **2.0.2**
+Version: **2.0.3**
 
 ## Installation
 
@@ -14,7 +14,7 @@ var saneWatch = require('gulp-sane-watch');
 gulp.task('watch', function() {
     saneWatch('css/**/*.css', function() {
         gulp.start('styles');
-    }); 
+    });
 });
 ```
 
@@ -25,7 +25,7 @@ var saneWatch = require('gulp-sane-watch');
 gulp.task('watch', function() {
     saneWatch('css/**/*.css', {debounce: 300}, function() {
         gulp.start('styles');
-    }); 
+    });
 });
 ```
 
@@ -38,7 +38,7 @@ gulp.task('watch', function() {
         events: ['onChange', 'onAdd']
     }, function() {
         gulp.start('styles');
-    }); 
+    });
 });
 ```
 
@@ -73,7 +73,7 @@ gulp.task('watch', function() {
         }
     }, function() {
         gulp.start('styles');
-    }); 
+    });
 });
 ```
 
