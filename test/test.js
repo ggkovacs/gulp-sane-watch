@@ -409,4 +409,42 @@ describe('watch', function() {
             }, 1000);
         });
     });
+
+    it('should support Windows with posix globs', function(done) {
+        done = once(done);
+        if (path.sep === '/') {
+            console.warn('Platform is not Windows - run this test on Windows to see actual result');
+        }
+        var tempFile = path.join(tempDir, 'test.txt');
+        fs.writeFileSync(tempFile, 'created');
+        var glob = path.join(tempDir, '*.txt').replace(new RegExp('\\\\', 'g'), '/');
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
+            var full = path.join(dir, filename);
+            full.should.equal(tempFile);
+            done();
+        });
+
+        allReady(watchers, function() {
+            fs.writeFileSync(tempFile, 'changed');
+        });
+    });
+
+    it('should support posix with Windows globs', function(done) {
+        done = once(done);
+        if (path.sep === '\\') {
+            console.warn('Platform is not posix - run this test on a posix system to see the actual result');
+        }
+        var tempFile = path.join(tempDir, 'test.txt');
+        fs.writeFileSync(tempFile, 'created');
+        var glob = path.join(tempDir, '*.txt').replace(new RegExp('/', 'g'), '\\');
+        watchers = watch(glob, { verbose: false }, function(filename, dir) {
+            var full = path.join(dir, filename);
+            full.should.equal(tempFile);
+            done();
+        });
+
+        allReady(watchers, function() {
+            fs.writeFileSync(tempFile, 'changed');
+        });
+    });
 });
