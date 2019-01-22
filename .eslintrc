@@ -1,5 +1,10 @@
 {
   "extends": [
-    "mito/legacy"
-  ]
+    "mito"
+  ],
+  "rules": {
+    "indent": [2, 2, {
+      "SwitchCase": 1
+    }]
+  }
 }

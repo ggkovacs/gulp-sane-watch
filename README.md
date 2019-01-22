@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-Version: **2.1.0**
+Version: **3.0.0**
 
 ## Installation
 
@@ -8,54 +8,54 @@ Run `npm install gulp-sane-watch`
 ## Usage
 
 ```js
-var gulp = require('gulp');
-var saneWatch = require('gulp-sane-watch');
+const gulp = require('gulp');
+const saneWatch = require('gulp-sane-watch');
 
-gulp.task('watch', function() {
-    saneWatch('css/**/*.css', function() {
+gulp.task('watch', () => {
+    saneWatch('css/**/*.css', () => {
         gulp.start('styles');
     });
 });
 ```
 
 ```js
-var gulp = require('gulp');
-var saneWatch = require('gulp-sane-watch');
+const gulp = require('gulp');
+const saneWatch = require('gulp-sane-watch');
 
-gulp.task('watch', function() {
-    saneWatch('css/**/*.css', {debounce: 300}, function() {
+gulp.task('watch', () => {
+    saneWatch('css/**/*.css', { debounce: 300 }, () => {
         gulp.start('styles');
     });
 });
 ```
 
 ```js
-var gulp = require('gulp');
-var saneWatch = require('gulp-sane-watch');
+const gulp = require('gulp');
+const saneWatch = require('gulp-sane-watch');
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     saneWatch('css/**/*.css', {
         events: ['onChange', 'onAdd']
-    }, function() {
+    }, () => {
         gulp.start('styles');
     });
 });
 ```
 
 ```js
-var gulp = require('gulp');
-var saneWatch = require('gulp-sane-watch');
+const gulp = require('gulp');
+const saneWatch = require('gulp-sane-watch');
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     saneWatch('css/**/*.css', {
         debounce: 300,
-        onChange: function() {
+        onChange: () => {
             gulp.start('change');
         },
-        onAdd: function() {
+        onAdd: () => {
             gulp.start('add');
         },
-        onDelete: function() {
+        onDelete: () => {
             gulp.start('delete');
         }
     });
@@ -63,15 +63,15 @@ gulp.task('watch', function() {
 ```
 
 ```js
-var gulp = require('gulp');
-var saneWatch = require('gulp-sane-watch');
+const gulp = require('gulp');
+const saneWatch = require('gulp-sane-watch');
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     saneWatch('css/**/*.css', {
         saneOptions: {
             poll: true
         }
-    }, function() {
+    }, () => {
         gulp.start('styles');
     });
 });
