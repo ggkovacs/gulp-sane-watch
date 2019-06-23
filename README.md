@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-Version: **3.0.0**
+Version: **3.0.1**
 
 ## Installation
 
