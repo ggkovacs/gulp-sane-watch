@@ -127,7 +127,7 @@ MIT © 2021 Gergely Kovács (gg.kovacs@gmail.com)
 
 [npm-image]: https://badge.fury.io/js/gulp-sane-watch.svg
 [npm-url]: https://npmjs.org/package/gulp-sane-watch
-[travis-image]: https://travis-ci.org/ggkovacs/gulp-sane-watch.svg?branch=master
-[travis-url]: https://travis-ci.org/ggkovacs/gulp-sane-watch
+[travis-image]: https://travis-ci.com/ggkovacs/gulp-sane-watch.svg?branch=master
+[travis-url]: https://travis-ci.com/ggkovacs/gulp-sane-watch
 [daviddm-image]: https://david-dm.org/ggkovacs/gulp-sane-watch.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/ggkovacs/gulp-sane-watch
