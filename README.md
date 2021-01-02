@@ -1,5 +1,5 @@
 # [gulp](https://github.com/gulpjs/gulp)-sane-watch [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-Version: **3.0.3**
+Version: **3.0.4**
 
 ## Installation
 
@@ -123,7 +123,7 @@ List of events, that should be watched by `gulp-sane-watch`. Contains [event nam
 This function is called, when some group of events is happens on file-system.
 
 # License
-MIT © 2019 Gergely Kovács (gg.kovacs@gmail.com)
+MIT © 2021 Gergely Kovács (gg.kovacs@gmail.com)
 
 [npm-image]: https://badge.fury.io/js/gulp-sane-watch.svg
 [npm-url]: https://npmjs.org/package/gulp-sane-watch
